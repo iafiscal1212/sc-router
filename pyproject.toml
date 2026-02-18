@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sc-router"
+version = "0.1.0"
+description = "AI routing based on Selector Complexity theory"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.8"
+authors = [
+    {name = "Carmen Esteban", email = "carmen@iafiscal.com"},
+]
+keywords = ["ai", "routing", "selector-complexity", "tool-routing", "agent"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.optional-dependencies]
+numpy = ["numpy>=1.20"]
+langchain = ["langchain-core>=0.1"]
+openai = ["openai>=1.0"]
+dev = ["pytest>=7.0", "pytest-benchmark"]
+
+[project.urls]
+Homepage = "https://github.com/iafiscal1212/sc-router"
+Repository = "https://github.com/iafiscal1212/sc-router"
+
+[tool.setuptools.packages.find]
+include = ["sc_router*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
