@@ -52,6 +52,15 @@ def classify_query(
 
     evidence = {}
 
+    # --- Phase 0: selector-complexity bridge (if available) ---
+    # Adds mathematical grounding as additional evidence, but does NOT
+    # override the query-level classification — the polynomial encoding
+    # is an approximation and small systems may appear trivial.
+    from .bridge import classify_with_sc
+    sc_result = classify_with_sc(query, catalog)
+    if sc_result is not None:
+        evidence['selector_complexity'] = sc_result
+
     # --- Phase 1: Structural analysis ---
     features = extract_query_features(query, catalog)
     evidence['features'] = features

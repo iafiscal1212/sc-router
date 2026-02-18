@@ -20,7 +20,7 @@ Quick start:
     'direct'
 """
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 from .catalog import Tool, ToolCatalog
 from .router import RoutingResult, ToolAssignment, route
@@ -31,6 +31,7 @@ from .decomposer import decompose, DecompositionResult, SubTask
 from .patterns import detect_query_patterns
 from .adapter import ToolAdapter
 from .cost import CostTracker, RoutingRecord
+from .bridge import classify_with_sc, hardness_score, is_available as sc_available
 
 __all__ = [
     'Tool',
@@ -48,4 +49,7 @@ __all__ = [
     'ToolAdapter',
     'CostTracker',
     'RoutingRecord',
+    'classify_with_sc',
+    'hardness_score',
+    'sc_available',
 ]
