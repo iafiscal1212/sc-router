@@ -1,8 +1,7 @@
 """Pattern detection shortcuts for fast SC classification.
 
-Analogous to patterns.py in selector-complexity: detects structural
-patterns in queries that allow immediate SC classification without
-running the full feature extraction + prediction pipeline.
+Detects structural patterns in queries that allow immediate SC classification
+without running the full feature extraction + prediction pipeline.
 """
 
 import re
@@ -236,7 +235,7 @@ def detect_topology_pattern(query: str, catalog: ToolCatalog) -> Optional[Dict]:
 def detect_query_patterns(query: str, catalog: ToolCatalog) -> Dict:
     """Run all pattern detectors with priority logic.
 
-    Analogous to detect_patterns() in selector-complexity.
+
 
     Priority:
     1. Single tool (SC0) — fastest shortcut

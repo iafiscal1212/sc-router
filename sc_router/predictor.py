@@ -1,6 +1,5 @@
 """Threshold-based decision tree for SC level prediction.
 
-Analogous to SCPredictor in selector-complexity/predictor.py.
 No ML dependencies — uses threshold splits on the 17 features.
 Training data: ~40 labeled queries with known SC levels.
 """
@@ -13,7 +12,6 @@ from .features import FEATURE_NAMES
 class SCRouterPredictor:
     """Predict SC level (0-3) from query features using threshold splits.
 
-    Same algorithm as SCPredictor in selector-complexity:
     - For each feature, find the best threshold that separates SC levels.
     - At prediction time, each split votes (weighted by accuracy).
     - Fallback: nearest-mean classification.
@@ -154,7 +152,7 @@ class SCRouterPredictor:
         """Auto-fit from built-in training examples.
 
         ~40 queries covering SC(0) through SC(3), with pre-computed feature
-        signatures. Analogous to fit_from_landscape() in selector-complexity.
+        signatures.
         """
         training_data = _get_training_data()
         return self.fit(training_data)

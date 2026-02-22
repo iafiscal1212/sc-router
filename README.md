@@ -4,7 +4,7 @@ AI routing based on Selector Complexity theory.
 
 **"What is the minimum cost of choosing the right strategy?"**
 
-SC-Router classifies queries by the difficulty of the routing decision itself — not just the query content. Based on the mathematical framework of [Selector Complexity](https://pypi.org/project/selector-complexity/) (IPS proof complexity), it determines whether a query needs direct dispatch, pipeline decomposition, combinatorial search, or full agent delegation.
+SC-Router classifies queries by the difficulty of the routing decision itself — not just the query content. It determines whether a query needs direct dispatch, pipeline decomposition, combinatorial search, or full agent delegation.
 
 Part of [**kore-stack**](https://github.com/iafiscal1212/kore-stack) — the complete cognitive middleware for LLMs. `pip install kore-stack` for the full stack, or install individually:
 
@@ -54,7 +54,7 @@ print(result.tool_assignments)   # [ToolAssignment(tool='weather', ...)]
 
 ## How It Works
 
-SC-Router extracts 17 structural features from each query (analogous to the 17 features in IPS proof complexity), then classifies the routing difficulty using a threshold-based decision tree — no ML required.
+SC-Router extracts 17 structural features from each query, then classifies the routing difficulty using a threshold-based decision tree — no ML required.
 
 The classification runs in <50ms and adds minimal overhead to any routing pipeline.
 

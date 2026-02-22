@@ -1,7 +1,6 @@
 """Main routing engine.
 
-Analogous to strategy.py in selector-complexity:
-uses SC classification to choose the routing strategy, then executes it.
+Uses SC classification to choose the routing strategy, then executes it.
 
 Strategies:
   SC(0) → direct dispatch (single tool)

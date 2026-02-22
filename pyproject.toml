@@ -12,7 +12,7 @@ requires-python = ">=3.8"
 authors = [
     {name = "Carmen Esteban", email = "carmen@iafiscal.com"},
 ]
-keywords = ["ai", "routing", "selector-complexity", "tool-routing", "agent"]
+keywords = ["ai", "routing", "complexity-routing", "tool-routing", "agent"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
@@ -26,12 +26,11 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-sc = ["selector-complexity>=0.5.1"]
 numpy = ["numpy>=1.20"]
 langchain = ["langchain-core>=0.1"]
 openai = ["openai>=1.0"]
 dev = ["pytest>=7.0", "pytest-benchmark"]
-full = ["selector-complexity>=0.5.1", "numpy>=1.20"]
+full = ["numpy>=1.20"]
 
 [project.urls]
 Homepage = "https://github.com/iafiscal1212/sc-router"

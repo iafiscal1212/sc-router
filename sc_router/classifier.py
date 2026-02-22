@@ -1,6 +1,5 @@
 """4-phase SC classification pipeline for queries.
 
-Analogous to classifier.py in selector-complexity:
   Phase 1: Structural analysis (extract_query_features)
   Phase 2: Pattern shortcuts (detect_query_patterns)
   Phase 3: Tool matching analysis
@@ -52,14 +51,11 @@ def classify_query(
 
     evidence = {}
 
-    # --- Phase 0: selector-complexity bridge (if available) ---
-    # Adds mathematical grounding as additional evidence, but does NOT
-    # override the query-level classification — the polynomial encoding
-    # is an approximation and small systems may appear trivial.
+    # --- Phase 0: external backend (if available) ---
     from .bridge import classify_with_sc
     sc_result = classify_with_sc(query, catalog)
     if sc_result is not None:
-        evidence['selector_complexity'] = sc_result
+        evidence['external_backend'] = sc_result
 
     # --- Phase 1: Structural analysis ---
     features = extract_query_features(query, catalog)
@@ -181,7 +177,7 @@ def _classify(
 ) -> Dict:
     """Final SC classification from all collected evidence.
 
-    Decision logic (analogous to _classify in selector-complexity):
+    Decision logic:
     - All subtasks uniquely assigned → SC(0)
     - Clear decomposition, good composability → SC(1)
     - Ambiguous assignments, constraints → SC(2)

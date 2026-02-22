@@ -1,7 +1,6 @@
 """Extract 17 structural features from a query + tool catalog.
 
-Analogous to extract_features() in selector-complexity/predictor.py.
-Instead of polynomial axioms, we analyze query text + tool compatibility graph.
+Analyzes query text + tool compatibility graph.
 All computed with text parsing (regex, keywords, sentence splitting) + graph properties.
 No ML dependencies.
 """
@@ -232,8 +231,6 @@ def _spectral_gap(graph: Dict[str, Dict], nodes: List[str]) -> float:
 
 def extract_query_features(query: str, catalog: ToolCatalog) -> Dict[str, float]:
     """Extract 17 structural features from a query + tool catalog.
-
-    Analogous to extract_features(axioms, num_vars) in selector-complexity.
 
     Returns dict with all 17 feature values.
     """

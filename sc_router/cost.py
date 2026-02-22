@@ -1,7 +1,6 @@
 """Cost tracking and feedback loop.
 
-Analogous to hardness.py in selector-complexity:
-tracks actual routing costs, validates SC predictions vs reality,
+Tracks actual routing costs, validates SC predictions vs reality,
 and feeds back into the predictor for continuous improvement.
 """
 
@@ -30,8 +29,7 @@ class RoutingRecord:
 class CostTracker:
     """Track routing costs and provide feedback for predictor improvement.
 
-    Analogous to quantify_hardness() in selector-complexity: computes a
-    composite difficulty score and validates predictions.
+    Computes a composite difficulty score and validates predictions.
     """
 
     def __init__(self, max_history: int = 1000):
@@ -83,7 +81,6 @@ class CostTracker:
     def difficulty_score(self, record: RoutingRecord) -> float:
         """Compute composite difficulty score (0-100) for a routing record.
 
-        Analogous to quantify_hardness() in selector-complexity.
         Weighted components:
           - SC level: 40%
           - Tool count: 20%

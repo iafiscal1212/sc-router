@@ -1,7 +1,6 @@
 """SC-Router: AI routing based on Selector Complexity theory.
 
-Classifies queries by the difficulty of the routing decision itself,
-using the mathematical framework of Selector Complexity (IPS proof complexity).
+Classifies queries by the difficulty of the routing decision itself.
 
 Quick start:
     >>> from sc_router import ToolCatalog, Tool, route

@@ -1,7 +1,6 @@
 """Tool catalog and compatibility graph.
 
-Analogous to the polynomial axiom system in selector-complexity:
-tools are variables, capability overlaps create the constraint graph.
+Tools are variables, capability overlaps create the constraint graph.
 """
 
 from dataclasses import dataclass, field
@@ -31,8 +30,8 @@ class Tool:
 class ToolCatalog:
     """Registry of tools with compatibility graph construction.
 
-    Analogous to the polynomial system in IPS: tools are variables,
-    shared capability tags create edges in the constraint graph.
+    Tools are variables, shared capability tags create edges in the
+    constraint graph.
     """
 
     def __init__(self):
@@ -80,7 +79,7 @@ class ToolCatalog:
         return results
 
     def compatibility_graph(self) -> Dict[str, Dict[str, Set[str]]]:
-        """Build the compatibility graph (analogous to constraint graph in IPS).
+        """Build the compatibility graph.
 
         Nodes = tool names. An edge exists between tools A and B if:
         - They share capability tags, OR
