@@ -19,7 +19,7 @@ Quick start:
     'direct'
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 from .catalog import Tool, ToolCatalog
 from .router import RoutingResult, ToolAssignment, route
@@ -31,6 +31,8 @@ from .patterns import detect_query_patterns
 from .adapter import ToolAdapter
 from .cost import CostTracker, RoutingRecord
 from .bridge import classify_with_sc, hardness_score, is_available as sc_available
+from .agent import RemoteAgent, AgentRegistry, AgentStatus
+from .tracing import RoutingTrace, TraceStep, TracingHook
 
 __all__ = [
     'Tool',
@@ -51,4 +53,10 @@ __all__ = [
     'classify_with_sc',
     'hardness_score',
     'sc_available',
+    'RemoteAgent',
+    'AgentRegistry',
+    'AgentStatus',
+    'RoutingTrace',
+    'TraceStep',
+    'TracingHook',
 ]
