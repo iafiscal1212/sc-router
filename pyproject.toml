@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sc-router"
-version = "0.3.0"
+version = "0.4.0"
 description = "AI routing based on Selector Complexity theory"
 readme = "README.md"
 license = "MIT"
@@ -29,9 +29,10 @@ classifiers = [
 numpy = ["numpy>=1.20"]
 langchain = ["langchain-core>=0.1"]
 openai = ["openai>=1.0"]
+ekg = ["llm-ekg>=1.1.0"]
 gateway = ["starlette>=0.27", "uvicorn>=0.20", "pyyaml>=6.0", "httpx>=0.24"]
 dev = ["pytest>=7.0", "pytest-benchmark", "pytest-asyncio>=0.21", "httpx>=0.24"]
-full = ["numpy>=1.20", "starlette>=0.27", "uvicorn>=0.20", "pyyaml>=6.0", "httpx>=0.24"]
+full = ["numpy>=1.20", "llm-ekg>=1.1.0", "starlette>=0.27", "uvicorn>=0.20", "pyyaml>=6.0", "httpx>=0.24"]
 
 [project.urls]
 Homepage = "https://github.com/iafiscal1212/sc-router"

@@ -19,7 +19,7 @@ Quick start:
     'direct'
 """
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 from .catalog import Tool, ToolCatalog
 from .router import RoutingResult, ToolAssignment, route
@@ -33,6 +33,12 @@ from .cost import CostTracker, RoutingRecord
 from .bridge import classify_with_sc, hardness_score, is_available as sc_available
 from .agent import RemoteAgent, AgentRegistry, AgentStatus
 from .tracing import RoutingTrace, TraceStep, TracingHook
+
+# Optional: ProfileManager (requires llm-ekg)
+try:
+    from .profiles import ProfileManager
+except ImportError:
+    ProfileManager = None  # type: ignore[assignment,misc]
 
 __all__ = [
     'Tool',
@@ -59,4 +65,5 @@ __all__ = [
     'RoutingTrace',
     'TraceStep',
     'TracingHook',
+    'ProfileManager',
 ]

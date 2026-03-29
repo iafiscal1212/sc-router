@@ -43,6 +43,7 @@ def route(
     catalog: ToolCatalog,
     agent_callback: Optional[Callable] = None,
     predictor=None,
+    profile_manager=None,
 ) -> RoutingResult:
     """Route a query to the appropriate tools based on SC classification.
 
@@ -52,6 +53,9 @@ def route(
         agent_callback: Optional callback for SC(3) agent delegation.
             Signature: callback(query, catalog, classification) -> RoutingResult
         predictor: Optional custom SCRouterPredictor instance.
+        profile_manager: Optional ProfileManager for EKG-based model
+            recommendations. When provided, adds 'ekg_recommendation'
+            to the result metadata.
 
     Returns:
         RoutingResult with strategy and tool assignments.
@@ -60,13 +64,24 @@ def route(
     level = classification['level']
 
     if level == 0:
-        return _direct_dispatch(query, catalog, classification)
+        result = _direct_dispatch(query, catalog, classification)
     elif level == 1:
-        return _decompose_and_route(query, catalog, classification)
+        result = _decompose_and_route(query, catalog, classification)
     elif level == 2:
-        return _search_combinations(query, catalog, classification)
+        result = _search_combinations(query, catalog, classification)
     else:  # level == 3
-        return _delegate_to_agent(query, catalog, classification, agent_callback)
+        result = _delegate_to_agent(query, catalog, classification, agent_callback)
+
+    # Add EKG recommendation if profile_manager is available
+    if profile_manager is not None:
+        try:
+            best = profile_manager.best_model(sc_level=level)
+            if best:
+                result.metadata['ekg_recommendation'] = best
+        except Exception:
+            pass  # profiles are advisory, never break routing
+
+    return result
 
 
 def _direct_dispatch(

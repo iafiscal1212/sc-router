@@ -130,11 +130,22 @@ def detect_pipeline_pattern(query: str, catalog: ToolCatalog) -> Optional[Dict]:
         subtask_matches.append([t.name for t in tools])
 
     mode = 'sequential' if len(seq_markers) >= len(par_markers) else 'parallel'
+    confidence = 'high' if len(seq_markers) + len(par_markers) >= 2 else 'medium'
+
+    # Detect complexity indicators that require deep analysis (SC 2-3).
+    # If present, lower confidence so the shortcut does NOT fire and the
+    # topology detector + final classifier can evaluate the true complexity.
+    has_cross_ref = bool(_CROSS_REFERENCE.search(query))
+    has_analysis = bool(_ANALYSIS_CHAIN.search(query))
+    multi_tool_count = sum(1 for tools in subtask_matches if len(tools) >= 3)
+
+    if has_cross_ref or has_analysis or multi_tool_count > 1:
+        confidence = 'low'
 
     return {
         'pattern': f'pipeline_{mode}',
         'level': 1,
-        'confidence': 'high' if len(seq_markers) + len(par_markers) >= 2 else 'medium',
+        'confidence': confidence,
         'subtasks': len(subtasks),
         'subtask_tools': subtask_matches,
     }
